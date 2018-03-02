@@ -1,0 +1,75 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">{{ title }}</a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a [routerLink]="['/cadastro']" class="btn btn-primary">Cadastre novas fotos</a>
+          </li>
+        </ul>
+    </div>
+  </nav>
+
+<app-dados-funcionais></app-dados-funcionais>
+
+<div class="container">
+<div class="row">
+
+<form action="" class="container">
+    <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">search</i>
+          <input id="busca" type="search" (keyup)="0" #inputDaBusca>
+        </div>
+    </div>
+
+</form>
+
+<h2 *ngIf="inputDaBusca.value">Você está procurando por: {{ inputDaBusca.value}}</h2>
+
+<div class="row">
+    <painel class="col s12 m3" *ngFor="let foto of fotos | filtraPorTitulo:inputDaBusca.value" [titulo]="foto.titulo | uppercase">
+      <a [routerLink]="['cadastro', foto._id]">
+        <foto url="{{ foto.url }}"
+            [titulo]="foto.titulo"></foto>
+      </a>
+      <button class="btn red darken-3" (click)="removeFoto(foto)">
+          Remover
+      </button>
+    </painel>
+   
+
+</div>
+      <!-- <div class="card hoverable">
+      <div class="card-image">
+          <ng-content></ng-content>
+      </div>
+      <div class="card-content">
+          <span class="card-title">{{ titulo }}</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+      </div>
+      <div class="card-action">
+      </div>
+      </div> -->
+  
+  
+  <!-- <foto *ngFor="let foto of fotos"
+        url="{{ foto.url }}"
+        [titulo]="foto.titulo"></foto> -->
+  <!--<img class="responsive-img" alt="Patriots Storm" src="./assets/img/pats_wallpaper.jpg">-->
+
+<!--<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
+  </li>
+</ul>-->
+
+
